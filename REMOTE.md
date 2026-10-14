@@ -1,5 +1,11 @@
 # 外网访问与编辑
 
+## 免费额度云端常驻（当前部署方案）
+
+若希望电脑关机后仍可用手机访问，使用 `deploy/README.md` 中的 Always Free Linux VM + Tailscale Serve 方案。网页和记录在云 VM 上运行；Tailscale HTTPS 地址仅对已加入同一 tailnet 的设备开放，不需购买域名。云端迁移后，可用 `research-tools/.access/remote-url.txt` 让 `manage.py` 经 Bearer 认证操作云端数据。开通免费 VM 仍受服务商账号验证、地区容量和免费资源规则限制。
+
+## 本机临时外网入口
+
 通过 Cloudflare Quick Tunnel 提供临时 HTTPS 入口，无需域名或云端账号。数据仍保存在本机 `research-tools/data/`；远程网页与项目聊天 AI 读写同一份记录，版本冲突仍由后端拒绝。
 
 ## 准备与开启

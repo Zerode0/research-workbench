@@ -10,6 +10,8 @@
 
 从项目根目录运行，路径含空格时使用引号。put 为新增，patch 为指定记录的顶层字段替换。
 
+没有远程配置时，manage.py 使用本机 `research-tools/data/`。部署到私人服务器后，将服务器的 HTTPS 根地址写入 `research-tools/.access/remote-url.txt`，并在本机 `.access/password.txt` 保存相同访问密码；配置后，manage.py 自动通过 Bearer 认证调用在线 API。运行这些命令时需先连接服务器所在的 Tailscale tailnet。连接失败会报错，不会静默改写本地数据。需要明确操作本机数据时添加 `--local`。
+
 概念的 `definition` 和 `explanation` 支持 LaTeX：行内公式写成 `$...$` 或 `\\(...\\)`，独立公式写成 `$$...$$` 或 `\\[...\\]`。聊天 AI 写入概念时可直接在文本中使用这些定界符；网页会自动排版公式。
 
 ```powershell
@@ -67,4 +69,4 @@ patch 文件例如 `{"revision":3,"notes":"本轮新增说明"}`。revision 使�
 
 `python research-tools/server.py --open`。默认端口 8765，仅本机访问，无安装或打包要求；`--data PATH` 可隔离验证数据。数据目录位于 research-tools/data，PDF 位于其中的 pdf，旧记录保存在 .history。JSON 导出仅包含记录；完整备份复制整个 data 目录。
 
-网站本身不调用语言模型：网页在线检索由公共文献 API 完成；科研评分、可靠定义和具体研究拆解由项目聊天 AI 按 Skill 完成。首版不含云端同步、后台自动抓取、法定节假日计算。
+网站本身不调用语言模型：网页在线检索由公共文献 API 完成；科研评分、可靠定义和具体研究拆解由项目聊天 AI 按 Skill 完成。未配置远程地址时，数据只存本地；`manage.py` 可按上文设置改走私人服务器 API。系统不做后台自动抓取，也不计算法定节假日。

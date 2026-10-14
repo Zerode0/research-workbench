@@ -8,7 +8,7 @@ User=research-workbench
 Group=research-workbench
 WorkingDirectory=/opt/research-workbench
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/usr/bin/python3 -B /opt/research-workbench/server.py --host 127.0.0.1 --port 8765 --data /var/lib/research-workbench/data --password-file /etc/research-workbench/password.txt --public-url https://workbench.example.com
+ExecStart=/usr/bin/python3 -B /opt/research-workbench/server.py --host 127.0.0.1 --port 8765 --data /var/lib/research-workbench/data --password-file /etc/research-workbench/password.txt --public-url https://workbench.tailnet.ts.net
 Restart=on-failure
 RestartSec=3
 NoNewPrivileges=true
