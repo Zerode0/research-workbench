@@ -1,0 +1,22 @@
+[Unit]
+Description=Research Workbench
+After=network.target
+
+[Service]
+Type=simple
+User=research-workbench
+Group=research-workbench
+WorkingDirectory=/opt/research-workbench
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -B /opt/research-workbench/server.py --host 127.0.0.1 --port 8765 --data /var/lib/research-workbench/data --password-file /etc/research-workbench/password.txt --public-url https://workbench.example.com
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/research-workbench
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
